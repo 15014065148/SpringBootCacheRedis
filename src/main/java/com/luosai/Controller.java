@@ -44,11 +44,19 @@ public class Controller {
     @RequestMapping("/4")
     @Cacheable(value = "getCount4",condition = "#key.age>10",unless = "#result>50")
     public Integer getCount4(User key){
+
         Random random = new Random();
         System.out.println(key);
         return random.nextInt(100);
     }
     @RequestMapping("/5")
+    @CachePut(value = "getCount4",condition = "#key.age>10",unless = "#result>50")
+    public Integer getCount5(User key){
+        Random random = new Random();
+        System.out.println(key);
+        return random.nextInt(100);
+    }
+    @RequestMapping("/6")
     @CacheEvict(value = "getCount4",allEntries = true)
     public String deleteCount4(){
         System.out.println("delete getCount4 ");
